@@ -1,3 +1,4 @@
+##CHANGED THE EOL SEQUENCE FROM CRLF TO LF##
 # must set CUDA_VISIBLE_DEVICES on the shell, i.e. calling
 #   CUDA_VISIBLE_DEVICES=0 sh scripts/run_exp.sh urban_cg2real_ac
 EXP_NAME="$1"

@@ -24,7 +24,7 @@ parser.add_argument('--frame_ext', dest='frame_ext', default='png',
 parser.add_argument('--out_dir', dest='out_dir', default=None,
                     help='Output folder of the video run.')
 parser.add_argument('--amplification_factor', dest='amplification_factor',
-                    type=float, default=5,
+                    type=float, default=5.0,
                     help='Magnification factor for inference.')
 parser.add_argument('--velocity_mag', dest='velocity_mag', action='store_true',
                     help='Whether to do velocity magnification.')
@@ -62,11 +62,11 @@ def main(args):
     exp_name = config['exp_name']
     setproctitle.setproctitle('{}_{}_{}' \
                               .format(args.phase, network_type, exp_name))
-    tfconfig = tf.ConfigProto(allow_soft_placement=True,
+    tfconfig = tf.compat.v1.ConfigProto(allow_soft_placement=True,
                               log_device_placement=False)
     tfconfig.gpu_options.allow_growth = True
 
-    with tf.Session(config=tfconfig) as sess:
+    with tf.compat.v1.Session(config=tfconfig) as sess:
         model = MagNet3Frames(sess, exp_name, config['architecture'])
         checkpoint = config['training']['checkpoint_dir']
         if args.phase == 'train':

@@ -7,14 +7,14 @@ DYNAMIC_MODE=${4:-"no"}
 OUT_DIR=data/output/"$VIDEO"_"$EXP_NAME"_"$AMPLIFICATION_FACTOR"
 VID_DIR=data/vids/"$VIDEO"
 OUT_DIR=data/output/"$VIDEO"
-if [ ! -d "$OUT_DIR" ]; then
+if [ ! -d "$OUT_DIR" ];then
     mkdir -p "$OUT_DIR"
 fi
 
 FLAGS="--phase=run --vid_dir=$VID_DIR --out_dir=$OUT_DIR --amplification_factor=$AMPLIFICATION_FACTOR"
 if [ "$DYNAMIC_MODE" = yes ] ; then
-    FLAGS="$FLAGS"" --velocity_mag"
+     FLAGS="$FLAGS"" --velocity_mag"
 fi
+echo "$FLAGS"
 python main.py --config_file=configs/"$EXP_NAME".conf \
-    $FLAGS
-
+     $FLAGS
